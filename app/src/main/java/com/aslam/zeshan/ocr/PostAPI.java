@@ -51,7 +51,7 @@ public class PostAPI {
                 try {
                     progressDialog.setMessage("Getting Text...");
                     progressDialog.setProgress(75);
-                    
+
                     getText();
                 } catch (IOException e) {
                     e.printStackTrace();
