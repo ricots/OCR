@@ -20,6 +20,6 @@ public class CameraHandler {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         File f = new File(android.os.Environment.getExternalStorageDirectory(), "temp.jpg");
         intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
-        ((Activity)con).startActivityForResult(intent, 1);
+        ((Activity) con).startActivityForResult(intent, 1);
     }
 }

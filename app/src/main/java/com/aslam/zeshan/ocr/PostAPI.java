@@ -10,7 +10,6 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import org.apache.http.Header;
-import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.IOException;
@@ -34,7 +33,7 @@ public class PostAPI {
         progressDialog = new ProgressDialog(con);
         progressDialog.setTitle("OCR");
         progressDialog.setMessage("Uploading...");
-        progressDialog.setProgressStyle(progressDialog.STYLE_HORIZONTAL);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         progressDialog.setProgress(0);
         progressDialog.show();
 
@@ -50,6 +49,9 @@ public class PostAPI {
                 ID = new JSONUtil().getFileID(str);
 
                 try {
+                    progressDialog.setMessage("Getting Text...");
+                    progressDialog.setProgress(75);
+                    
                     getText();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -64,7 +66,7 @@ public class PostAPI {
 
             @Override
             public void onProgress(int bytesWritten, int totalSize) {
-                int p = (int) 100 * bytesWritten / totalSize;
+                int p = 100 * bytesWritten / totalSize;
 
                 progressDialog.setProgress(p / 50);
             }
@@ -94,12 +96,6 @@ public class PostAPI {
 
                 progressDialog.setMessage("Failed! " + str);
                 progressDialog.setProgress(0);
-            }
-
-            @Override
-            public void onProgress(int bytesWritten, int totalSize) {
-                progressDialog.setMessage("Getting Text...");
-                progressDialog.setProgress(75);
             }
         });
     }
