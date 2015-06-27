@@ -65,7 +65,9 @@ public class MainActivity extends ActionBarActivity {
                     if (temp.getName().equals("temp.jpg")) {
                         f = temp;
                         try {
-                            new PostAPI(con, f).uploadFile();
+                            PostAPI postAPI = new PostAPI(con, f);
+                            postAPI.uploadFile();
+
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
